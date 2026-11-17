@@ -15,4 +15,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: npm run typecheck
       - run: npm test
+      # The report viewer is a static site built from recorded studies, so record the demo first.
+      - run: npm run study -- --demo --engine scripted
       - run: npm run build
