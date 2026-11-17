@@ -4,7 +4,7 @@
 
 Give Standin a URL and a task. Four personas with different constraints try to complete it. Each one thinks out loud, and every step is recorded with a screenshot. You get a replay per persona and a ranked list of findings with WCAG references.
 
-**[Open the live demo](https://mrunaliyadavps.github.io/test/)** to watch the replays.
+**[Open the live demo](https://mrunaliyadavps.github.io/standin/)** to watch the replays.
 
 ## Why I built it
 
