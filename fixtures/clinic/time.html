@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose a time | Larkspur Family Clinic (demo site)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">Larkspur <span>Family Clinic</span></div>
+  <nav aria-label="Main">
+    <a href="#">Services</a>
+    <!--v1--><a href="appointments.html">Appointments</a><!--/v1-->
+    <!--v2--><a href="appointments.html">Before you come</a><!--/v2-->
+    <a href="#">Patient portal</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<main>
+<p class="steps">Step 2 of 3</p>
+<h1>Pick a day and time</h1>
+<h2 id="day-h">Day</h2>
+<div class="options" role="group" aria-labelledby="day-h" data-set="day">
+  <button class="opt" type="button" aria-pressed="false">Mon 23</button>
+  <button class="opt" type="button" aria-pressed="false">Tue 24</button>
+  <button class="opt" type="button" aria-pressed="false">Wed 25</button>
+  <button class="opt" type="button" aria-pressed="false">Thu 26</button>
+</div>
+<h2 id="time-h">Time</h2>
+<div class="options" role="group" aria-labelledby="time-h" data-set="time">
+  <button class="opt" type="button" aria-pressed="false">9:00 AM</button>
+  <button class="opt" type="button" aria-pressed="false">9:30 AM</button>
+  <button class="opt" type="button" aria-pressed="false">10:15 AM</button>
+  <button class="opt" type="button" aria-pressed="false">11:00 AM</button>
+</div>
+<div class="row">
+<!--v1--><button id="next" class="icon-next" type="button" disabled><svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path d="M3 10h12M10 4l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><!--/v1-->
+<!--v2--><button id="next" class="primary" type="button" disabled>Continue</button><!--/v2-->
+</div>
+<script>
+  const chosen = {};
+  document.querySelectorAll(".options").forEach((set) => {
+    set.addEventListener("click", (e) => {
+      const b = e.target.closest(".opt");
+      if (!b) return;
+      set.querySelectorAll(".opt").forEach((o) => o.setAttribute("aria-pressed", String(o === b)));
+      chosen[set.dataset.set] = true;
+      document.getElementById("next").disabled = !(chosen.day && chosen.time);
+    });
+  });
+  document.getElementById("next").addEventListener("click", () => (location.href = "details.html"));
+</script>
+</main>
+<footer>Larkspur Family Clinic is a fictional demo site used to test Standin.</footer>
+</body>
+</html>

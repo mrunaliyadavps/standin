@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose a service | Larkspur Family Clinic (demo site)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">Larkspur <span>Family Clinic</span></div>
+  <nav aria-label="Main">
+    <a href="#">Services</a>
+    <!--v1--><a href="appointments.html">Appointments</a><!--/v1-->
+    <!--v2--><a href="appointments.html">Before you come</a><!--/v2-->
+    <a href="#">Patient portal</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<main>
+<p class="steps">Step 1 of 3</p>
+<h1>What do you need?</h1>
+<div class="cards">
+<!--v1-->
+  <div class="card" onclick="location.href=&quot;time.html&quot;"><h2>General check-up</h2><p>20 minutes with a nurse practitioner.</p></div>
+  <div class="card" onclick="location.href=&quot;time.html&quot;"><h2>Vaccination</h2><p>Flu, travel and routine vaccines.</p></div>
+  <div class="card" onclick="location.href=&quot;time.html&quot;"><h2>Ongoing condition</h2><p>30 minutes with your family doctor.</p></div>
+<!--/v1-->
+<!--v2-->
+  <a class="card" href="time.html"><h2>General check-up</h2><p>20 minutes with a nurse practitioner.</p></a>
+  <a class="card" href="time.html"><h2>Vaccination</h2><p>Flu, travel and routine vaccines.</p></a>
+  <a class="card" href="time.html"><h2>Ongoing condition</h2><p>30 minutes with your family doctor.</p></a>
+<!--/v2-->
+</div>
+</main>
+<footer>Larkspur Family Clinic is a fictional demo site used to test Standin.</footer>
+</body>
+</html>

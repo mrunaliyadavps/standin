@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your details | Larkspur Family Clinic (demo site)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand">Larkspur <span>Family Clinic</span></div>
+  <nav aria-label="Main">
+    <a href="#">Services</a>
+    <!--v1--><a href="appointments.html">Appointments</a><!--/v1-->
+    <!--v2--><a href="appointments.html">Before you come</a><!--/v2-->
+    <a href="#">Patient portal</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+<main>
+<p class="steps">Step 3 of 3</p>
+<h1>Your details</h1>
+<form action="confirmed.html" method="get">
+  <label for="name">Full name</label>
+  <input id="name" name="name" type="text" autocomplete="name" required>
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="email" required>
+  <label for="phone">Phone</label>
+  <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+  <!--v1--><button class="submit-faint" type="submit">Submit</button><!--/v1-->
+  <!--v2--><button class="primary" type="submit">Confirm appointment</button><!--/v2-->
+</form>
+</main>
+<footer>Larkspur Family Clinic is a fictional demo site used to test Standin.</footer>
+</body>
+</html>
