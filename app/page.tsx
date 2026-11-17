@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { loadStudies } from "@/lib/studies";
-import { engineLabel, finished, OUTCOME_LABEL } from "@/lib/ui";
+import { engineLabel, finished, OUTCOME_LABEL, REPO_URL } from "@/lib/ui";
 import { PERSONAS } from "@/src/personas";
 
 export default function Home() {
   const studies = loadStudies();
   const before = studies.find((s) => s.id === "clinic-before");
   const after = studies.find((s) => s.id === "clinic-after");
+  const firstStudy = before ?? studies[0];
 
   return (
     <>
@@ -16,20 +17,41 @@ export default function Home() {
         <p className="lede">
           Give Standin a website and a task. Four personas with different constraints try it in a real browser, think out loud, and show you exactly where they got stuck.
         </p>
+        <div className="cta-row">
+          {firstStudy && (
+            <Link href={`/study/${firstStudy.id}`} className="btn btn-primary">
+              Watch a replay
+              <span aria-hidden="true">→</span>
+            </Link>
+          )}
+          {REPO_URL && (
+            <a href={REPO_URL} className="btn btn-quiet">
+              View the source
+            </a>
+          )}
+        </div>
       </section>
 
       {before && after && (
         <section className="compare" aria-labelledby="compare-h">
           <div className="section-head">
             <h2 id="compare-h">Same task, same personas, before and after the fixes</h2>
-            <p>Task: &ldquo;{before.task}&rdquo; on a demo clinic site with deliberately planted problems.</p>
+            <p>
+              Task: &ldquo;{before.task}&rdquo; on a demo clinic site with deliberately planted problems. {engineLabel(before)}.
+            </p>
           </div>
           <div className="compare-grid">
             {[before, after].map((s, i) => (
-              <Link key={s.id} href={`/study/${s.id}`} className="compare-card">
-                <span className="tag">{i === 0 ? "Before" : "After"}</span>
+              <Link key={s.id} href={`/study/${s.id}`} className={`compare-card ${i === 0 ? "is-before" : "is-after"}`}>
+                <span className="tag">{i === 0 ? "Before the fixes" : "After the fixes"}</span>
                 <span className="big">
-                  {finished(s)}<small> of {s.runs.length} finished</small>
+                  <span className="num">{finished(s)}</span>
+                  <span className="of">of {s.runs.length} personas finished</span>
+                </span>
+                <span className="meter" aria-hidden="true">
+                  {s.runs.map((r) => (
+                    <span key={r.persona} className={`seg ${r.outcome}`} />
+                  ))}
                 </span>
                 <ul>
                   {s.runs.map((r) => (
@@ -40,32 +62,18 @@ export default function Home() {
                   ))}
                 </ul>
                 <span className="more">
-                  {s.findings.length} findings · Watch the replays →
+                  <span>
+                    {s.findings.length} {s.findings.length === 1 ? "finding" : "findings"}
+                  </span>
+                  <span className="more-link">
+                    Watch the replays <span aria-hidden="true">→</span>
+                  </span>
                 </span>
               </Link>
             ))}
           </div>
         </section>
       )}
-
-      <section aria-labelledby="studies-h">
-        <div className="section-head">
-          <h2 id="studies-h">Studies</h2>
-        </div>
-        <ul className="study-list">
-          {studies.map((s) => (
-            <li key={s.id}>
-              <Link href={`/study/${s.id}`}>
-                <strong>{s.title}</strong>
-                <span>{s.site}</span>
-                <span className="meta">
-                  {finished(s)}/{s.runs.length} finished · {s.findings.length} findings · {engineLabel(s)}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
 
       <section id="how" aria-labelledby="how-h">
         <div className="section-head">
