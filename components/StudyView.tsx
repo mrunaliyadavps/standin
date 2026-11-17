@@ -138,6 +138,9 @@ export default function StudyView({ study }: { study: Study }) {
                 aria-label="Step"
               />
             </div>
+            <p className="kbd-hint">
+              Tip: use <kbd>←</kbd> <kbd>→</kbd> to step through, or pick any line in the transcript.
+            </p>
             {step.missed.length > 0 && (
               <div className="missed-note">
                 <strong>On this page but out of reach for this persona</strong>
@@ -158,7 +161,7 @@ export default function StudyView({ study }: { study: Study }) {
                 <button onClick={() => go(run.persona, i)}>
                   <span className="n">{s.index}</span>
                   <span className="body">
-                    <span className="thought">&ldquo;{s.thought}&rdquo;</span>
+                    <span className="thought">{s.thought}</span>
                     <span className="act">
                       {ACTION_LABEL[s.action.type]}
                       {s.action.target ? `: ${s.action.target}` : ""}
